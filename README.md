@@ -1,6 +1,6 @@
 # Ve-AP — a governed AI agent in a real car
 
-**Ve-AP** (Vehicle Agentic Platform), on the **VE-MAP** architecture · capstone project, 2026
+**Ve-AP** (Vehicle Agentic Platform), on the **VE-MAP** architecture · https://theschoolof.ai/ capstone project, 2026
 
 > *Bounded authority and measured refusal for in-vehicle agents.*
 
