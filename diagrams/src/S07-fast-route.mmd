@@ -1,0 +1,24 @@
+sequenceDiagram
+  autonumber
+  actor D as Driver
+  participant A as Vehicle agent
+  participant L as Fast-route classifier
+  participant G as Allow(q)
+  participant P as Planner (larger model)
+  D->>A: question
+  A->>L: classify (~130 ms warm)
+  alt one reading answers it
+    L-->>A: route = read X
+    A->>G: read X
+    G-->>A: value
+    A-->>D: answer from a template — no language model
+  else it needs reasoning
+    A->>P: plan, constrained to a strict schema
+    P-->>A: steps
+    loop every step re-enters the gate
+      A->>G: step
+    end
+    A-->>D: answer with its evidence
+  else larger model unreachable
+    A-->>D: model-free answer, or an honest "I can't answer that now"
+  end

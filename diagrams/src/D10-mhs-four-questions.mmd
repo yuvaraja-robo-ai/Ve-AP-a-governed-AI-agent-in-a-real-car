@@ -1,0 +1,15 @@
+flowchart LR
+  ask["Agent asks for a capability<br/>e.g. battery state of charge"]
+  subgraph mhs["MHS — generic core, no vehicle knowledge"]
+    what["WHAT<br/>capability in the registry"]
+    how["HOW<br/>binding, in priority order"]
+    where["WHERE<br/>adapter + interface"]
+    whether["WHETHER<br/>admission verified + device interlock"]
+  end
+  reg[("Registry as data<br/>one profile per node · packs<br/>its digest is its version")]
+  adapters["Protocol adapters<br/>KUKSA · CAN · UDS · SOVD · GPIO<br/>UART · serial-line · snapshot · remote"]
+  dev["Devices"]
+  ask --> what --> how --> where --> whether --> adapters --> dev
+  reg -.-> what
+  reg -.-> how
+  reg -.-> where

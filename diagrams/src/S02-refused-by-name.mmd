@@ -1,0 +1,13 @@
+sequenceDiagram
+  autonumber
+  actor D as Driver
+  participant A as Vehicle agent
+  participant G as Allow(q)
+  participant J as Journal
+  D->>A: "Install the software update now"
+  A->>G: install_ota_bundle
+  Note over G: C3 — in no manifest, ever.<br/>Its name exists only to be refused.
+  G-->>A: refuse · NOT_IN_MANIFEST
+  G->>J: refused · NOT_IN_MANIFEST
+  A-->>D: says what was not done, and why
+  Note over A,G: No model call. Milliseconds, not seconds.

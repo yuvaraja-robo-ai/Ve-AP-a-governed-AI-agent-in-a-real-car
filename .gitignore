@@ -1,0 +1,8 @@
+video/out/
+*.mp4
+*.mov
+*.MOV
+*.wav
+.DS_Store
+__pycache__/
+*.key

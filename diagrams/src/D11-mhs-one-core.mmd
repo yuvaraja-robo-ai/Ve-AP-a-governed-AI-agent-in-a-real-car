@@ -1,0 +1,17 @@
+flowchart TB
+  subgraph faces["Faces — consumers, none speaks a protocol"]
+    s17["Agent harness"]
+    mcp["MCP — 14 verbs,<br/>never one tool per device"]
+    cab["Cabin display bridge<br/>disconnect releases every lease"]
+    sovd["SOVD REST<br/>diagnostic standard"]
+  end
+  core["MHS core<br/>discover · describe · status · explain · fetch<br/>request · set · subscribe_lens · drain · renew · release"]
+  subgraph ad["Adapters — the only code that knows a protocol"]
+    k["KUKSA"]
+    c["CAN / UDS"]
+    g["GPIO"]
+    sl["serial-line"]
+    sn["snapshot"]
+    r["remote node<br/>pinned digest"]
+  end
+  s17 & mcp & cab & sovd --> core --> k & c & g & sl & sn & r

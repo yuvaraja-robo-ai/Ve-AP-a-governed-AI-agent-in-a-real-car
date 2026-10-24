@@ -1,0 +1,13 @@
+sequenceDiagram
+  autonumber
+  participant A as Vehicle agent
+  participant P as Path A alert
+  participant Au as Audio arbiter
+  participant S as Car speakers
+  A->>Au: spoken answer · normal priority
+  Au->>S: playing the answer
+  P->>Au: critical alert
+  Au->>S: cut the answer within 100 ms, play the alert
+  Au-->>A: answer dropped — stale
+  P->>Au: the same warning again, too soon
+  Au-->>P: refused · RATE_LIMITED

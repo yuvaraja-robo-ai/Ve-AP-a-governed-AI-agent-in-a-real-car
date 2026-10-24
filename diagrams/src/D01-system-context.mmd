@@ -1,0 +1,24 @@
+flowchart LR
+  driver(["Driver"])
+  subgraph cabin["Inside the car — no cloud"]
+    ui["Cabin display<br/>touch · Talk button"]
+    agent["Governed vehicle agent<br/>read-only, on the edge"]
+    gate{"Allow(q)<br/>8 conjuncts"}
+    journal[("Hash-chained<br/>journal")]
+    mhs["MHS<br/>hardware layer"]
+    dms["Driver monitoring<br/>numbers, never pixels"]
+    road["Road view<br/>blurred · detections · lanes"]
+    audio["Car audio arbiter"]
+  end
+  vehicle["Vehicle<br/>signals · diagnostics · body"]
+  speakers["Car speakers<br/>(Bluetooth)"]
+  driver -- "voice · touch" --> ui
+  driver -. "face → derived state" .-> dms
+  ui <--> agent
+  agent -- "every vehicle call" --> gate
+  gate -- "admitted" --> mhs
+  mhs <--> vehicle
+  gate -- "every decision,<br/>refusals included" --> journal
+  dms --> ui
+  road --> ui
+  agent --> audio --> speakers

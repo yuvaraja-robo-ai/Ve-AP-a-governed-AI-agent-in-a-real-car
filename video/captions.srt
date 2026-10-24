@@ -1,0 +1,291 @@
+1
+00:00:00,000 --> 00:00:07,000
+Ve-AP: an AI agent for the car that has to earn every action.
+
+2
+00:00:07,000 --> 00:00:13,000
+Agents are coming to cars. A tool list says what they can call, not what they may.
+
+3
+00:00:13,000 --> 00:00:19,000
+And a safety rule that has never refused anything has never been shown to work.
+
+4
+00:00:19,000 --> 00:00:26,000
+One predicate guards every vehicle call: eight conditions, each able to refuse on its own.
+
+5
+00:00:26,000 --> 00:00:33,000
+Each refusal names itself, and all eight are made to refuse on every test run.
+
+6
+00:00:33,000 --> 00:00:44,000
+Models live above layer 4, protocols below it. Only bounded operations cross.
+
+7
+00:00:44,000 --> 00:00:55,000
+Two boards in the car, a Jetson and a Raspberry Pi 5, and no cloud.
+
+8
+00:00:55,000 --> 00:01:02,000
+MHS, the hardware layer: every hardware fact is checked data, not code.
+
+9
+00:01:02,000 --> 00:01:08,000
+The agent never names a pin, a CAN ID or a diagnostic service.
+
+10
+00:01:08,000 --> 00:01:15,000
+MHS decides no authority: it can verify an admission, never mint one.
+
+11
+00:01:15,000 --> 00:01:21,000
+And the device interlock can still refuse a write the gate allowed.
+
+12
+00:01:21,000 --> 00:01:27,000
+Safety alerts never wait for a model. The agent may explain them, never clear them.
+
+13
+00:01:27,000 --> 00:01:32,000
+Dangerous capabilities are named only so they can be refused by name.
+
+14
+00:01:32,000 --> 00:01:43,000
+The face leaves as numbers. The road picture leaves blurred, or not at all.
+
+15
+00:01:43,000 --> 00:01:55,000
+Nine ideas, each with its evidence: a test count, an eval, or the car.
+
+16
+00:01:55,000 --> 00:02:05,000
+The model is the last resort: the median answer went from 19.7 s to 0.86 s.
+
+17
+00:02:05,000 --> 00:02:15,000
+On 19 October every check passed, all eight conditions refused on cue, and the journal was intact.
+
+18
+00:02:22,000 --> 00:02:26,000
+We are starting the Ve-AP framework in the car.
+[Terminal blurred: it lists every service as active]
+
+19
+00:02:26,000 --> 00:02:29,000
+[Terminal blurred: it lists every service as active]
+
+20
+00:02:29,000 --> 00:02:35,000
+A separate battery powers the Jetson Orin Nano
+
+21
+00:02:35,000 --> 00:02:41,000
+and the Raspberry Pi, the two compute modules,
+
+22
+00:02:41,000 --> 00:02:51,000
+running the vehicle controls, the car views and the camera views.
+
+23
+00:02:51,000 --> 00:02:59,000
+The road camera is a dash cam, and this is the driver-monitoring camera.
+[Street blurred for privacy]
+
+24
+00:02:59,000 --> 00:03:07,000
+It is connected over Bluetooth to the car's own audio system.
+
+25
+00:03:07,000 --> 00:03:15,000
+The car's head unit is paired with the Pi.
+[Device names blurred]
+
+26
+00:03:18,000 --> 00:03:34,000
+Here the driver-monitoring model is loading. Once it has loaded, monitoring starts.
+
+27
+00:03:34,000 --> 00:03:39,000
+This is the GNSS receiver, a Quectel L89.
+
+28
+00:03:39,000 --> 00:03:43,000
+It gives position and speed. [No fix on the day; cause not established]
+
+29
+00:03:43,000 --> 00:03:58,000
+Now the attention view has loaded.
+
+30
+00:03:58,000 --> 00:04:11,000
+It monitors drowsiness. I am acting sleepy on purpose.
+
+31
+00:04:11,000 --> 00:04:20,000
+It detects it: "Signs of drowsiness. Take a break soon."
+
+32
+00:04:20,000 --> 00:04:30,000
+[The face is drawn as lines from numbers. No image of the driver is shown or stored]
+
+33
+00:04:33,000 --> 00:04:42,000
+This is the road view. The dash cam connects to the Pi over Wi-Fi.
+
+34
+00:04:42,000 --> 00:04:49,000
+It shows the objects ahead and the road guidance.
+
+35
+00:04:49,000 --> 00:04:58,000
+The lane model is openpilot, from comma.ai, integrated here.
+
+36
+00:04:58,000 --> 00:05:02,000
+While driving we can see the detail.
+
+37
+00:05:02,000 --> 00:05:17,000
+[Ve-AP blurs the picture before it reaches the screen. Detected objects are boxed]
+
+38
+00:05:17,000 --> 00:05:32,000
+[On this drive the camera sat crooked. Ve-AP refused to calibrate and said: straighten the camera]
+
+39
+00:05:32,000 --> 00:05:47,000
+Lane lines show when the road has markings. This road has none.
+
+40
+00:05:47,000 --> 00:06:00,000
+It is a normal local road. On a marked main road the lanes will show.
+
+41
+00:06:03,000 --> 00:06:19,600
+Driver: What is the battery percentage available in this vehicle?
+
+42
+00:06:19,600 --> 00:06:20,500
+[Thinking]
+
+43
+00:06:20,500 --> 00:06:30,000
+Ve-AP: The battery temperature is 25 degrees Celsius; the speed is 54 kilometres per hour;
+
+44
+00:06:30,000 --> 00:06:37,000
+the gear is drive; the battery level is 60 percent; the coolant is 87 degrees Celsius.
+
+45
+00:06:37,000 --> 00:06:46,000
+Driver: What are the faults in this vehicle?
+
+46
+00:06:46,000 --> 00:07:00,000
+[Fault codes are read through the gate. In this build the vehicle signals come from a CAN simulator]
+
+47
+00:07:00,000 --> 00:07:04,000
+Ve-AP: No fault codes are stored in the engine.
+
+48
+00:07:07,000 --> 00:07:14,000
+Driver: Do you see what trip is ongoing now?
+
+49
+00:07:14,000 --> 00:07:29,000
+[No route is set. The agent will not invent one]
+
+50
+00:07:29,000 --> 00:07:36,000
+Ve-AP: I don't know the route to there. The simulated routes go to Bengaluru, Madurai, Mysuru, Puducherry.
+
+51
+00:07:36,000 --> 00:07:44,000
+These are the light controls, the battery and energy, and vehicle health.
+
+52
+00:07:44,000 --> 00:07:50,000
+This is software status [read-only: installing is refused by design].
+
+53
+00:07:50,000 --> 00:07:54,000
+And this is driver attention.
+
+54
+00:07:57,000 --> 00:08:03,000
+We enable the cabin camera and open the live view.
+
+55
+00:08:03,000 --> 00:08:27,000
+It is loading the camera model. It is a separate model, so the first load takes time.
+
+56
+00:08:27,000 --> 00:08:30,000
+We are starting the cabin camera.
+
+57
+00:08:30,000 --> 00:08:40,000
+[It learns this driver's normal first]
+
+58
+00:08:40,000 --> 00:08:44,000
+Ve-AP: "Stay alert."
+
+59
+00:08:44,000 --> 00:09:15,000
+[Eyes closed on purpose: closure is judged against this driver's normal]
+
+60
+00:09:15,000 --> 00:09:21,000
+Ve-AP: "Stay alert."
+[On screen: "Signs of drowsiness. Take a break soon."]
+
+61
+00:09:24,000 --> 00:09:34,000
+[The camera was straightened between drives. The mount was found by driving, in 74 s]
+
+62
+00:09:34,000 --> 00:09:46,000
+[The picture is blurred by Ve-AP before it reaches the screen]
+
+63
+00:09:46,000 --> 00:10:00,000
+[Cars, people and trucks are tracked. The lane model draws the path ahead]
+
+64
+00:10:00,000 --> 00:10:14,000
+["Lens uncalibrated" is shown, not hidden: the lens was never measured]
+
+65
+00:10:14,000 --> 00:10:24,000
+[About 10 frames per second, all through the drive]
+
+66
+00:10:24,000 --> 00:10:38,000
+[Later in the same drive]
+
+67
+00:10:38,000 --> 00:10:52,000
+[Objects in the car's path are flagged "in path"]
+
+68
+00:10:52,000 --> 00:11:06,000
+[A close hazard in path can be spoken: "Watch out ahead." Its distance thresholds are not yet checked]
+
+69
+00:11:06,000 --> 00:11:16,000
+Real: cameras, microphone, speech, car audio. Simulated: the vehicle signals. The car's own bus is next.
+
+70
+00:11:16,000 --> 00:11:26,000
+The road view held about 10 fps. It refused a crooked camera, then found the mount in 74 s.
+
+71
+00:11:26,000 --> 00:11:36,000
+Limits are stated, not hidden. Next: the car's own OBD-II bus, listen-only first.
+
+72
+00:11:36,000 --> 00:11:44,000
+Docs, diagrams, slides and this film: the ve-ap-capstone repository. Thank you.

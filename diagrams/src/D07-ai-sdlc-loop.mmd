@@ -1,0 +1,14 @@
+flowchart LR
+  I["Intent<br/>the problem + the refusal it enables"]
+  Sp["Spec<br/>parts, diagrams, honest limits"]
+  Pl["Plan<br/>tasks with tests first"]
+  T["Failing test<br/>fails for the stated reason"]
+  C["Minimal code"]
+  G["Gates<br/>reachability · mutation · traceability · CI"]
+  K["Checkpoint commit"]
+  M["Metrics + learnings"]
+  H["Pre-edit hooks<br/>block invariant breaks"]:::hook
+  I --> Sp --> Pl --> T --> C --> G --> K --> M
+  M -. "incident, or a refusal that never fired" .-> I
+  H -. "checked before every edit" .-> C
+  classDef hook fill:#fff4d6,stroke:#c99a00,color:#5a4500

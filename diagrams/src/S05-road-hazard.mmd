@@ -1,0 +1,16 @@
+sequenceDiagram
+  autonumber
+  participant Cam as Dash cam
+  participant GW as Gateway (Pi)
+  participant R as Road view (Jetson)
+  participant UI as Cabin display
+  participant Au as Car audio
+  Cam->>GW: video over the dash cam's Wi-Fi
+  GW->>R: frames
+  R->>R: blur heads and plates — no blur, no picture
+  R->>R: detect objects · openpilot lanes and path · drop our own bonnet
+  R->>UI: blurred picture ≤ 10 fps + boxes + "in path"
+  opt close and in path
+    R->>Au: hazard
+    Au->>UI: "Watch out ahead."
+  end

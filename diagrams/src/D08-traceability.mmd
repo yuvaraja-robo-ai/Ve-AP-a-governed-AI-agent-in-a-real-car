@@ -1,0 +1,4 @@
+flowchart LR
+  I["Intent<br/>54 written"] --> R["Requirement<br/>424 traced"] --> W["Work package"] --> P["Plan task"] --> T["Test id<br/>with its tier"] --> C["Reason code<br/>it provokes"]
+  chk["Traceability checker<br/>breaks the build on a gap"]:::hook -.-> R
+  classDef hook fill:#fff4d6,stroke:#c99a00,color:#5a4500

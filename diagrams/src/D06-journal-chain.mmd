@@ -1,0 +1,7 @@
+flowchart LR
+  e1["Decision n−1<br/>who · capability · verdict · code · time<br/>hash(n−1)"]
+  e2["Decision n<br/>prev = hash(n−1)<br/>hash(n)"]
+  e3["Decision n+1<br/>prev = hash(n)<br/>hash(n+1)"]
+  v["Verifier<br/>recomputes the chain"]
+  e1 --> e2 --> e3
+  v -. "an edit, deletion or reordering<br/>is reported with its line" .-> e2

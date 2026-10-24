@@ -1,0 +1,50 @@
+---
+config:
+  layout: elk
+---
+flowchart LR
+  webcam["Driver webcam + mic"]
+  subgraph jetson["Jetson Orin Nano Super — compute node"]
+    direction TB
+    voice["Voice — push-to-talk, whisper.cpp, Piper"]
+    dmsJ["Driver monitoring — face → numbers"]
+    fastroute["Fast-route classifier"]
+    agentJ["Vehicle agent — Allow(q) + journal"]
+    roadJ["Road view — detector, openpilot lanes, blur"]
+  end
+  subgraph pi["Raspberry Pi 5 — vehicle node"]
+    direction TB
+    ui["Cabin display (Flutter)"]
+    sovd["SOVD REST + MCP server"]
+    mhsP["MHS core + registry"]
+    kuksa["KUKSA databroker"]
+    aud["Car audio arbiter"]
+    gw["Dash cam gateway"]
+  end
+  subgraph veh["Vehicle side"]
+    direction TB
+    can["CAN — simulator today, OBD-II next"]
+    gnss["GNSS receiver"]
+    panel["Bench panel (Arduino)"]
+    head["Car head unit + speakers"]
+    dashcam["Dash cam"]
+  end
+  gpu["GPU box — larger model, optional, bench only"]:::off
+  webcam --> voice
+  webcam --> dmsJ
+  voice --> agentJ
+  fastroute --> agentJ
+  gpu -.-> agentJ
+  agentJ == "MCP over the direct Ethernet link" ==> sovd
+  dmsJ --> ui
+  roadJ ---|"frames"| gw
+  roadJ --> ui
+  agentJ --> aud
+  sovd --> mhsP
+  kuksa --> mhsP
+  kuksa ---|"CAN"| can
+  mhsP ---|"serial"| gnss
+  mhsP ---|"serial"| panel
+  aud ---|"Bluetooth"| head
+  gw ---|"Wi-Fi"| dashcam
+  classDef off fill:#eee,color:#777,stroke:#bbb,stroke-dasharray:4 3

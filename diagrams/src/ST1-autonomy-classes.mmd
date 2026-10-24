@@ -1,0 +1,10 @@
+flowchart LR
+  C0["C0 · Observe<br/>read signals, explain<br/><b>automatic</b>"]:::c0
+  C1["C1 · Recommend / comfort<br/>climate, lights, lock<br/><b>automatic, through the gate</b>"]:::c1
+  C2["C2 · Controlled recovery<br/>windows, clear DTCs, reconnect<br/><b>writ + physical presence + stationary</b>"]:::c2
+  C3["C3 · Safety-critical<br/>raw CAN, ECU memory, OTA install,<br/>identify driver, read emotion<br/><b>in no manifest — refused by name</b>"]:::c3
+  C0 --> C1 --> C2 --> C3
+  classDef c0 fill:#e6f4ea,stroke:#2e7d32,color:#1b4d20
+  classDef c1 fill:#e8f0fe,stroke:#1f6feb,color:#0b3d91
+  classDef c2 fill:#fff4d6,stroke:#c99a00,color:#5a4500
+  classDef c3 fill:#fde2e1,stroke:#d33,color:#8a1c1c

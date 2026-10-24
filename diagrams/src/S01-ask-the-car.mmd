@@ -1,0 +1,23 @@
+sequenceDiagram
+  autonumber
+  actor D as Driver
+  participant UI as Cabin display
+  participant V as Voice
+  participant A as Vehicle agent
+  participant G as Allow(q)
+  participant M as MHS / SOVD
+  participant J as Journal
+  participant S as Car speakers
+  D->>UI: hold Talk — "What is the battery percentage?"
+  UI->>V: audio, only while Talk is held
+  V->>A: transcript
+  A->>A: fast route picks the readings
+  loop each reading
+    A->>G: read(capability)
+    G->>J: admitted · C0
+    G->>M: read
+    M-->>A: value + timestamp + source
+  end
+  A-->>UI: answer + evidence chips
+  A-->>V: answer text
+  V->>S: spoken answer, through the audio arbiter

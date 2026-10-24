@@ -1,0 +1,13 @@
+flowchart LR
+  sig["Vehicle signals"]
+  subgraph A["Path A — deterministic, no model"]
+    rules["Declared alert rules<br/>coolant hot · door open while moving<br/>belt unfastened · brake fluid low"]
+    alert["Alert on screen + sound"]
+  end
+  subgraph B["Path B — the governed agent"]
+    ag["Agent, through Allow(q)"]
+    expl["Explains an alert<br/>on request"]
+  end
+  sig --> rules --> alert
+  sig --> ag --> expl
+  expl -. "may explain,<br/>can never clear or suppress" .-> alert

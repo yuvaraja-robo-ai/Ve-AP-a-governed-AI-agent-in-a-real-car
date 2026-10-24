@@ -1,0 +1,14 @@
+sequenceDiagram
+  autonumber
+  participant Cam as Driver webcam
+  participant DMS as Driver monitoring
+  participant UI as Cabin display
+  participant Au as Car audio
+  actor D as Driver
+  Cam->>DMS: frames — they never leave this box
+  DMS->>DMS: face landmarks → eyes, mouth, head angle
+  DMS->>UI: numbers only: eyes-closed share, yawns, head angle, outline 0..1
+  UI->>UI: learn this driver's normal, then compare
+  UI->>D: "Signs of drowsiness. Take a break soon."
+  UI->>Au: warning, rate-limited
+  Au->>D: "Stay alert."

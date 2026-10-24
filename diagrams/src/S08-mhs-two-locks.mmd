@@ -1,0 +1,25 @@
+sequenceDiagram
+  autonumber
+  participant A as Agent / face
+  participant G as Gate — Allow(q)
+  participant M as MHS core
+  participant I as Device interlock
+  participant Ad as Adapter
+  participant Dev as Device
+  participant J as Journal
+  A->>G: request (capability, args)
+  G->>G: eight conjuncts
+  G-->>A: admission for this exact request digest
+  G->>J: admitted
+  A->>M: set(capability, args, admission)
+  M->>M: verify the admission — MHS cannot mint one
+  M->>I: device policy check
+  alt interlock refuses
+    I-->>A: INTERLOCK_REJECTED
+  else allowed
+    I->>Ad: write
+    Ad->>Dev: protocol frame
+    Dev-->>Ad: response
+    Ad->>Dev: read back
+    Ad-->>A: done, verified by read-back
+  end

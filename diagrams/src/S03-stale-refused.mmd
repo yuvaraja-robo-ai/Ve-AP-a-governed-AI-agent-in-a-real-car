@@ -1,0 +1,15 @@
+sequenceDiagram
+  autonumber
+  actor D as Driver
+  participant A as Vehicle agent
+  participant G as Allow(q)
+  participant M as MHS
+  participant J as Journal
+  D->>A: "What is the coolant temperature?"
+  A->>G: read(coolant temperature)
+  G->>M: evidence age?
+  M-->>G: last value older than its bound
+  G-->>A: refuse · STALE_EVIDENCE
+  G->>J: refused · STALE_EVIDENCE
+  A-->>D: "I could not read the coolant temperature — the reading is too old."
+  Note over A: An old number is never presented as current.

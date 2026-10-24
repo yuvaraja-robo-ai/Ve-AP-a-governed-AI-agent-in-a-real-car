@@ -1,0 +1,17 @@
+flowchart TB
+  L9["L9 · Cloud / depot — optional, off"]:::off
+  L8["L8 · Experience — cabin display, voice, engineering console"]
+  L7["L7 · Orchestration — fast route, planner, turn budget"]
+  L6["L6 · Specialised agent — the read-only vehicle agent"]
+  L5["L5 · Shared intelligence — knowledge retrieval, driver state, summaries"]
+  L4["L4 · Capability gateway — Allow(q) · MCP capabilities · journal"]:::gate
+  L3["L3 · Vehicle services — SOVD north face over MHS"]
+  L2["L2 · Signals and transport — KUKSA databroker · CAN"]
+  L1["L1 · Runtime — Jetson + Pi, containers, model runtime"]
+  L0["L0 · Physical — ECUs, sensors, deterministic controllers"]
+  L9 -.-> L8
+  L8 --> L7 --> L6 --> L5 --> L4
+  L4 == "the only way down" ==> L3
+  L3 --> L2 --> L1 --> L0
+  classDef gate fill:#1f6feb,color:#fff,stroke:#0b3d91,stroke-width:2px
+  classDef off fill:#eee,color:#777,stroke:#bbb,stroke-dasharray:4 3

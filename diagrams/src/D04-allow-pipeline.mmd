@@ -1,0 +1,33 @@
+flowchart TB
+  q["Request q<br/>agent identity · capability · arguments"]
+  A{"Auth(i,t)<br/>in this agent's manifest?"}
+  S{"Schema(x)<br/>arguments valid?"}
+  F{"Fresh(s)<br/>evidence young enough?"}
+  P{"Pre_t(s)<br/>preconditions hold?"}
+  R{"Risk(t,s) ≤ Permit(i)<br/>class within the permit?"}
+  C{"Consent(q)<br/>data use consented?"}
+  B{"Budget(q)<br/>calls and cost left?"}
+  T{"Before(τ)<br/>still inside the deadline?"}
+  ok["Admit<br/>MHS → device → read-back"]
+  dA["NOT_IN_MANIFEST"]:::deny
+  dS["SCHEMA_INVALID"]:::deny
+  dF["STALE_EVIDENCE"]:::deny
+  dP["PRECONDITION_UNMET"]:::deny
+  dR["RISK_EXCEEDS_PERMIT"]:::deny
+  dC["REDACTION_UNAVAILABLE"]:::deny
+  dB["BUDGET_EXHAUSTED"]:::deny
+  dT["DEADLINE_EXCEEDED"]:::deny
+  J[("Hash-chained journal<br/>every verdict, with its code")]
+  q --> A
+  A -- yes --> S -- yes --> F -- yes --> P -- yes --> R -- yes --> C -- yes --> B -- yes --> T -- yes --> ok
+  A -- no --> dA
+  S -- no --> dS
+  F -- no --> dF
+  P -- no --> dP
+  R -- no --> dR
+  C -- no --> dC
+  B -- no --> dB
+  T -- no --> dT
+  ok --> J
+  dA & dS & dF & dP & dR & dC & dB & dT --> J
+  classDef deny fill:#fde2e1,color:#8a1c1c,stroke:#d33
