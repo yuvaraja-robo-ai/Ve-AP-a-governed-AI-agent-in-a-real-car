@@ -4,7 +4,8 @@
 
 > *Bounded authority and measured refusal for in-vehicle agents.*
 
-▶ **Film:** *YouTube link, added after upload* · 📊 **Slides:** [presentation/Ve-AP-capstone.pdf](presentation/Ve-AP-capstone.pdf)
+▶ **Film:** *[YouTube link, [https://www.youtube.com/watch?v=attTbTC4p-c](https://www.youtube.com/watch?v=attTbTC4p-c) · 
+📊 **Slides:** [presentation/Ve-AP-capstone.pdf](presentation/Ve-AP-capstone.pdf)
 
 An AI agent that answers questions about a car while it is being driven. It runs on two small boards in the
 car, with **no cloud**. Every call it makes to the vehicle passes an **eight-condition authority predicate**.
