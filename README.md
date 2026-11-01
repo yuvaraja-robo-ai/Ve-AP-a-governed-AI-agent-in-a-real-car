@@ -6,6 +6,8 @@
 
 ▶ **Film:** [Watch on YouTube](https://www.youtube.com/watch?v=attTbTC4p-c) 
 📊 **Slides:** [presentation/Ve-AP-capstone.pdf](presentation/Ve-AP-capstone.pdf)
+📊 **Journal:** [Journal](https://zenodo.org/uploads/23858110)
+
 
 An AI agent that answers questions about a car while it is being driven. It runs on two small boards in the
 car, with **no cloud**. Every call it makes to the vehicle passes an **eight-condition authority predicate**.
